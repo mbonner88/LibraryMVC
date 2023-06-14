@@ -12,6 +12,6 @@ namespace LibraryMVC.Models
         [DataType(DataType.Date)] 
         public DateTime PublicationDate { get; set; }
         [Display(Name = "ISBN")]
-        public int? Isbn { get; set; }
+        public long? Isbn { get; set; }
     }
 }
