@@ -13,5 +13,6 @@ namespace LibraryMVC.Models
         public DateTime PublicationDate { get; set; }
         [Display(Name = "ISBN")]
         public long? Isbn { get; set; }
+        public string? ImgUrl { get; set; }
     }
 }
