@@ -22,6 +22,8 @@ namespace LibraryMVC.Controllers
         // GET: Books
         public async Task<IActionResult> Index()
         {
+            var books = from b in _context.Book
+                        select b;
             return View(await _context.Book.ToListAsync());
         }
 
