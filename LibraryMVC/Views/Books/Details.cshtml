@@ -46,6 +46,12 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Isbn)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ImgUrl)
+        </dt>
+        <dd class="col-sm-10">
+            <img src = "@Model.ImgUrl" alt="Book image" height="300" width="200" />
+        </dd>
     </dl>
 </div>
 <div>
