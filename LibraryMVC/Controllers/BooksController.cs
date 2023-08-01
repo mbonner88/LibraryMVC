@@ -20,7 +20,7 @@ namespace LibraryMVC.Controllers
         }
 
         // GET: Books
-        public async Task<IActionResult> Index(string titleSearchString, string authorSearchString)
+        public async Task<IActionResult> Index(string titleSearchString, string authorSearchString, string bookGenre)
         {
             var books = from b in _context.Book
                         select b;
@@ -32,7 +32,20 @@ namespace LibraryMVC.Controllers
             {
                 books = books.Where(s => s.Author!.Contains(authorSearchString));
             }
-            return View(await books.ToListAsync());
+            IQueryable<string> genreQuery = from b in _context.Book
+                                            orderby b.Genre
+                                            select b.Genre;
+            if(!String.IsNullOrEmpty(bookGenre))
+            {
+                books = books.Where(s => s.Genre == bookGenre);
+            }
+
+            var bookVM = new BookViewModel
+            {
+                Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
+                Books = await books.ToListAsync(),
+            };
+            return View(bookVM);
         }
 
         // GET: Books/Details/5

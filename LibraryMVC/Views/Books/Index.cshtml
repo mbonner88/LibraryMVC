@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LibraryMVC.Models.Book>
+﻿@model BookViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -14,6 +14,9 @@
     <p>
         Title: <input type="text" name="TitleSearchString" />
         Author: <input type="text" name="AuthorSearchString" />
+        Genre: <select asp-for="BookGenre" asp-items="Model.Genres">
+            <option value="">All</option>
+        </select>
         <input type="submit" value="Filter" />
     </p>
 </form>
@@ -21,27 +24,27 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Books![0].Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Author)
+                @Html.DisplayNameFor(model => model.Books![0].Author)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Genre)
+                @Html.DisplayNameFor(model => model.Books![0].Genre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Publisher)
+                @Html.DisplayNameFor(model => model.Books![0].Publisher)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PublicationDate)
+                @Html.DisplayNameFor(model => model.Books![0].PublicationDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Isbn)
+                @Html.DisplayNameFor(model => model.Books![0].Isbn)
             </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Books!) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
